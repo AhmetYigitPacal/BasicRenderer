@@ -2,7 +2,7 @@
 set -e
 
 BUILD_DIR="build"
-BUILD_TYPE="Debug"
+BUILD_TYPE="Release"
 
 if [ ! -d "$BUILD_DIR" ]; then
   echo "Configuring project..."

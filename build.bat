@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-set BUILD_TYPE=Debug
+set BUILD_TYPE=Release
 set EXEC_NAME=BasicRenderer
 
 if not exist build (
