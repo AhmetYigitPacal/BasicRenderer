@@ -2,6 +2,7 @@
 A simple OpenGL program for rendering Wavefront '.obj' files.
 
 ## Project Structure
+```markdown
 BasicRenderer/
 ├── build.bat # Windows build script
 ├── build.sh # Linux/macOS build script
@@ -15,6 +16,7 @@ BasicRenderer/
 ├── build/ # Build output directory
 │ └── BasicRenderer.exe # Executable
 └── README.md
+```
 
 ## Dependencies
 - [GLFW](https://github.com/glfw/glfw) (added as git submodule)  
