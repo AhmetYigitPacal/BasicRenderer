@@ -30,7 +30,7 @@ BasicRenderer/
 
 ### 1. Clone the repository **with submodules**
 ```bash
-git clone --recurse-submodules https://github.com/yourusername/BasicRenderer.git
+git clone --recurse-submodules https://github.com/AhmetYigitPacal/BasicRenderer
 ```
 
 On Linux/MacOS
