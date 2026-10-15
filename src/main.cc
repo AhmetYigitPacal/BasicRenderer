@@ -27,38 +27,40 @@ int main(int argc, char** argv) {
 
     glEnable(GL_DEPTH_TEST);
 
-    Mesh mesh(argv[1]);
-    Material material;
-    Object object(mesh, material);
-    object.init();
+    { // Scope for Mesh, Material, and Object so they are destroyed before glfwDestroyWindow and glfwTerminate
+        Mesh mesh(argv[1]);
+        Material material;
+        Object object(mesh, material);
+        object.init();
 
-    double xlast, ylast;
-    double sens = 0.4f;
+        double xlast, ylast;
+        double sens = 0.4f;
 
-    while (!glfwWindowShouldClose(window)) {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glClearColor(0.0f, 0.2f, 0.3f, 1.0f);
-        
-        double xpos, ypos;
-        glfwGetCursorPos(window, &xpos, &ypos);
+        while (!glfwWindowShouldClose(window)) {
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            glClearColor(0.0f, 0.2f, 0.3f, 1.0f);
+            
+            double xpos, ypos;
+            glfwGetCursorPos(window, &xpos, &ypos);
 
-        int mousebutton = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
-        if (mousebutton == GLFW_PRESS) {
-            float dx = float(xpos - xlast);
-            float dy = float(ypos - ylast);
+            int mousebutton = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
+            if (mousebutton == GLFW_PRESS) {
+                float dx = float(xpos - xlast);
+                float dy = float(ypos - ylast);
 
-            if (dx != 0)
-                object.transform().rotate(dx * sens, glm::vec3(0, 1, 0));
-            if (dy != 0)
-                object.transform().rotate(dy * sens, glm::vec3(1, 0, 0));
+                if (dx != 0)
+                    object.transform().rotate(dx * sens, glm::vec3(0, 1, 0));
+                if (dy != 0)
+                    object.transform().rotate(dy * sens, glm::vec3(1, 0, 0));
+            }
+
+            xlast = xpos, ylast = ypos;
+
+            object.render();
+
+            glfwSwapBuffers(window);
+            glfwPollEvents();
         }
-
-        xlast = xpos, ylast = ypos;
-
-        object.render();
-
-        glfwSwapBuffers(window);
-        glfwPollEvents();
     }
 
     glfwDestroyWindow(window);

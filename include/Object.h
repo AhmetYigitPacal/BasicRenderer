@@ -12,7 +12,7 @@
 class Object {
 public:
     Object();
-    Object(Mesh mesh, Material material);
+    Object(const Mesh& mesh, const Material& material);
     ~Object();
 
     void init();
@@ -31,7 +31,7 @@ private:
     Material material_;
     Transform transform_;
 
-    unsigned int shaderProgram_;
+    unsigned int shaderProgram_ = 0;
     unsigned int vertexShaderID_;
     unsigned int fragmentShaderID_;
 

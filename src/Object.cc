@@ -12,7 +12,7 @@ Object::Object() {
     linkShaders();
 }
 
-Object::Object(Mesh mesh, Material material) : mesh_(mesh), material_(material) {
+Object::Object(const Mesh& mesh, const Material& material) : mesh_(mesh), material_(material) {
     vertexShaderID_ = mesh_.vertexShaderID();
     fragmentShaderID_ = material_.fragmentShaderID();
 
@@ -75,7 +75,9 @@ void Object::render() {
 }
 
 void Object::linkShaders() {
-    glDeleteProgram(shaderProgram_);
+    if (shaderProgram_ != 0) {
+        glDeleteProgram(shaderProgram_);
+    }
 
     shaderProgram_ = glCreateProgram();
     glAttachShader(shaderProgram_, vertexShaderID_);
